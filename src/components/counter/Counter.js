@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Counter.css';
 
-export default function Counter() {
-  return (
-    <div className='counter'>
-      <button onClick={increment}>+1</button>
-      <span className='count'>0</span>
-    </div>
-  );
-}
+export default class Counter extends Component {
+  //Define initial state in constructor
+  //state => counter = 0
+  constructor() {
+    super();
+    this.state = {
+      counter: 0,
+    };
+    this.increment = this.increment.bind(this);
+  }
 
-function increment() {
-  console.log('increment');
+  render() {
+    return (
+      <div className='counter'>
+        <button onClick={this.increment}>+1</button>
+        <span className='count'>{this.state.counter}</span>
+      </div>
+    );
+  }
+
+  //Update state
+  //counter++
+  increment() {
+    //this.state.counter++; BAD PRACTICE
+    this.setState({
+      counter: this.state.counter + 1,
+    });
+  }
 }
