@@ -13,9 +13,10 @@ export default class Counter extends Component {
   }
 
   render() {
+    //const style = { fontSize: '350px' };
     return (
       <div className='counter'>
-        <button onClick={this.increment}>+1</button>
+        <button onClick={this.increment}>+{this.props.by}</button>
         <span className='count'>{this.state.counter}</span>
       </div>
     );
@@ -26,7 +27,7 @@ export default class Counter extends Component {
   increment() {
     //this.state.counter++; BAD PRACTICE
     this.setState({
-      counter: this.state.counter + 1,
+      counter: this.state.counter + this.props.by,
     });
   }
 }
