@@ -31,3 +31,7 @@ export default class Counter extends Component {
     });
   }
 }
+
+Counter.defaultProps = {
+  by: 1,
+};
