@@ -10,6 +10,11 @@ export default class Counter extends Component {
     };
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
+    this.reset = this.reset.bind(this);
+  }
+
+  reset() {
+    this.setState({ counter: 0 });
   }
 
   increment(by) {
@@ -44,6 +49,11 @@ export default class Counter extends Component {
           decrementMethod={this.decrement}
         />
         <span className='count'>{this.state.counter}</span>
+        <div>
+          <button className='reset' onClick={this.reset}>
+            RESET
+          </button>
+        </div>
       </div>
     );
   }
