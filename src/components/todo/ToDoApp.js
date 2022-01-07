@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 export default class ToDoApp extends Component {
   render() {
     return (
       <div className='toDoApp'>
-        <LoginComponent />
+        <Router>
+          <Routes>
+            <Route path='/login' element={<LoginComponent />} />
+            <Route path='/welcome' element={<WelcomeComponent />} />
+            <Route path='/' element={<LoginComponent />} />
+          </Routes>
+        </Router>
+        {/* <LoginComponent />
+        <WelcomeComponent /> */}
       </div>
     );
+  }
+}
+
+class WelcomeComponent extends Component {
+  render() {
+    return <div>Welcome</div>;
   }
 }
 
@@ -44,10 +59,8 @@ class LoginComponent extends Component {
   render() {
     return (
       <div>
-        <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
-        <ShowLoginSuccessMessage
-          showSuccessMessage={this.state.showSuccessMessage}
-        />
+        {this.state.hasLoginFailed && <div>Invalid credentials</div>}
+        {this.state.showSuccessMessage && <div>Login succesful</div>}
         Username:{' '}
         <input
           type='text'
@@ -66,14 +79,4 @@ class LoginComponent extends Component {
       </div>
     );
   }
-}
-
-function ShowInvalidCredentials(props) {
-  if (props.hasLoginFailed) return <div>Invalid credentials</div>;
-  return null;
-}
-
-function ShowLoginSuccessMessage(props) {
-  if (props.showSuccessMessage) return <div>Login succesful</div>;
-  return null;
 }
