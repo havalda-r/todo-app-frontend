@@ -16,17 +16,38 @@ class LoginComponent extends Component {
     this.state = {
       username: 'in28minutes',
       password: '',
+      hasLoginFailed: false,
+      showSuccessMessage: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.loginClicked = this.loginClicked.bind(this);
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  loginClicked() {
+    if (
+      this.state.username === 'in28minutes' &&
+      this.state.password === 'dummy'
+    ) {
+      console.log('successful');
+      this.setState({ showSuccessMessage: true });
+      this.setState({ hasLoginFailed: false });
+    } else {
+      this.setState({ showSuccessMessage: false });
+      this.setState({ hasLoginFailed: true });
+    }
+  }
+
   render() {
     return (
       <div>
+        <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
+        <ShowLoginSuccessMessage
+          showSuccessMessage={this.state.showSuccessMessage}
+        />
         Username:{' '}
         <input
           type='text'
@@ -41,8 +62,18 @@ class LoginComponent extends Component {
           value={this.state.password}
           onChange={this.handleChange}
         />
-        <button>LOGIN</button>
+        <button onClick={this.loginClicked}>LOGIN</button>
       </div>
     );
   }
+}
+
+function ShowInvalidCredentials(props) {
+  if (props.hasLoginFailed) return <div>Invalid credentials</div>;
+  return null;
+}
+
+function ShowLoginSuccessMessage(props) {
+  if (props.showSuccessMessage) return <div>Login succesful</div>;
+  return null;
 }
