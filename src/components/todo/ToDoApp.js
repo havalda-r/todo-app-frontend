@@ -5,6 +5,7 @@ import LoginComponentWithNavigate from './LoginComponent';
 import ListTodosComponent from './ListTodosComponent';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
+import LogoutComponent from './LogoutComponent';
 
 export default class ToDoApp extends Component {
   render() {
@@ -17,6 +18,7 @@ export default class ToDoApp extends Component {
             <Route path='/login' element={<LoginComponentWithNavigate />} />
             <Route path='/welcome/:name/*' element={<WelcomeFunction />} />
             <Route path='/todos' element={<ListTodosComponent />} />
+            <Route path='/logout' element={<LogoutComponent />} />
             <Route path='*' element={<ErrorComponent />} />
           </Routes>
         </Router>
