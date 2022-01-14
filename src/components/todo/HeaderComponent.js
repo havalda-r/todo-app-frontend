@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 class HeaderComponent extends Component {
   render() {
     const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
-    console.log(isUserLoggedIn);
 
     return (
       <header>
