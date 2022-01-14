@@ -3,12 +3,14 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import WelcomeFunction from './WelcomeComponent';
 import LoginComponentWithNavigate from './LoginComponent';
 import ListTodosComponent from './ListTodosComponent';
+import HeaderComponent from './HeaderComponent';
+import FooterComponent from './FooterComponent';
 
 export default class ToDoApp extends Component {
   render() {
     return (
       <div className='toDoApp'>
-        <h1>TODO Management</h1>
+        <HeaderComponent />
         <Router>
           <Routes>
             <Route path='/' element={<LoginComponentWithNavigate />} />
@@ -18,6 +20,7 @@ export default class ToDoApp extends Component {
             <Route path='*' element={<ErrorComponent />} />
           </Routes>
         </Router>
+        <FooterComponent />
         {/* <LoginComponent />
         <WelcomeComponent /> */}
       </div>
