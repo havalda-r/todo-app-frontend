@@ -10,8 +10,8 @@ export default class ToDoApp extends Component {
   render() {
     return (
       <div className='toDoApp'>
-        <HeaderComponent />
         <Router>
+          <HeaderComponent />
           <Routes>
             <Route path='/' element={<LoginComponentWithNavigate />} />
             <Route path='/login' element={<LoginComponentWithNavigate />} />
