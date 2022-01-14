@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import WelcomeFunction from './WelcomeComponent';
 import LoginComponentWithNavigate from './LoginComponent';
 
 export default class ToDoApp extends Component {
@@ -12,7 +12,7 @@ export default class ToDoApp extends Component {
           <Routes>
             <Route path='/' element={<LoginComponentWithNavigate />} />
             <Route path='/login' element={<LoginComponentWithNavigate />} />
-            <Route path='/welcome/*' element={<WelcomeComponent />} />
+            <Route path='/welcome/:name/*' element={<WelcomeFunction />} />
             <Route path='*' element={<ErrorComponent />} />
           </Routes>
         </Router>
@@ -25,10 +25,4 @@ export default class ToDoApp extends Component {
 
 function ErrorComponent() {
   return <div>An error occured. Contact support!</div>;
-}
-
-class WelcomeComponent extends Component {
-  render() {
-    return <div>Welcome</div>;
-  }
 }

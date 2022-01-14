@@ -48,7 +48,7 @@ class LoginComponent extends Component {
 
   handleLogin() {
     if (this.state.username === 'test' && this.state.password === 'test') {
-      this.props.navigate('/welcome');
+      this.props.navigate(`/welcome/${this.state.username}`);
     } else {
       console.log('Login failed');
       this.setState({
