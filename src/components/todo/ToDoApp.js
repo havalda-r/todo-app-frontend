@@ -6,6 +6,7 @@ import ListTodosComponent from './ListTodosComponent';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
 import LogoutComponent from './LogoutComponent';
+import AuthenticationService from './AuthenticationService';
 
 export default class ToDoApp extends Component {
   render() {

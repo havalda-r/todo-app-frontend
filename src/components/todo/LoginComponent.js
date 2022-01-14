@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AuthenticationService from './AuthenticationService';
 
 class LoginComponent extends Component {
   constructor(props) {
@@ -55,6 +56,10 @@ class LoginComponent extends Component {
 
   handleLogin() {
     if (this.state.username === 'test' && this.state.password === 'test') {
+      AuthenticationService.registerSuccesfulLogin(
+        this.state.username,
+        this.state.password
+      );
       this.props.navigate(`/welcome/${this.state.username}`);
     } else {
       console.log('Login failed');
