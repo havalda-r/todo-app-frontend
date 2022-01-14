@@ -6,7 +6,7 @@ import ListTodosComponent from './ListTodosComponent';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
 import LogoutComponent from './LogoutComponent';
-import AuthenticationService from './AuthenticationService';
+import AuthenticatedRoute from './AuthenticatedRoute';
 
 export default class ToDoApp extends Component {
   render() {
@@ -17,9 +17,30 @@ export default class ToDoApp extends Component {
           <Routes>
             <Route path='/' element={<LoginComponentWithNavigate />} />
             <Route path='/login' element={<LoginComponentWithNavigate />} />
-            <Route path='/welcome/:name/*' element={<WelcomeFunction />} />
-            <Route path='/todos' element={<ListTodosComponent />} />
-            <Route path='/logout' element={<LogoutComponent />} />
+            <Route
+              path='/welcome/:name/*'
+              element={
+                <AuthenticatedRoute>
+                  <WelcomeFunction />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path='/todos'
+              element={
+                <AuthenticatedRoute>
+                  <ListTodosComponent />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path='/logout'
+              element={
+                <AuthenticatedRoute>
+                  <LogoutComponent />
+                </AuthenticatedRoute>
+              }
+            />
             <Route path='*' element={<ErrorComponent />} />
           </Routes>
         </Router>
