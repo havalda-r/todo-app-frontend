@@ -71,12 +71,12 @@ class LoginComponent extends Component {
   }
 }
 
-function ShowInvalidCredential(props) {
-  if (props.hasLoginFailed) {
-    return <div>Invalid Credential</div>;
-  }
-  return null;
-}
+// function ShowInvalidCredential(props) {
+//   if (props.hasLoginFailed) {
+//     return <div>Invalid Credential</div>;
+//   }
+//   return null;
+// }
 
 function LoginComponentWithNavigate(props) {
   const navigate = useNavigate();
