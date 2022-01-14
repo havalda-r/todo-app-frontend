@@ -7,6 +7,7 @@ import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
 import LogoutComponent from './LogoutComponent';
 import AuthenticatedRoute from './AuthenticatedRoute';
+import ErrorComponent from './ErrorComponent';
 
 export default class ToDoApp extends Component {
   render() {
@@ -45,13 +46,7 @@ export default class ToDoApp extends Component {
           </Routes>
         </Router>
         <FooterComponent />
-        {/* <LoginComponent />
-        <WelcomeComponent /> */}
       </div>
     );
   }
-}
-
-function ErrorComponent() {
-  return <div>An error occured. Contact support!</div>;
 }
