@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import './bootstrap.css';
 //import Counter from './components/counter/Counter';
 import ToDoApp from './components/todo/ToDoApp';
 //import FirstComponent from './components/learning-examples/FirstComponent';
