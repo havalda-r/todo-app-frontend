@@ -5,9 +5,24 @@ class ListTodosComponent extends Component {
     super();
     this.state = {
       todos: [
-        { id: 1, description: 'Learn to dance' },
-        { id: 2, description: 'Become an expert in React' },
-        { id: 3, description: 'Visit India' },
+        {
+          id: 1,
+          description: 'Learn to dance',
+          done: false,
+          targetDate: new Date(),
+        },
+        {
+          id: 2,
+          description: 'Become an expert in React',
+          done: false,
+          targetDate: new Date(),
+        },
+        {
+          id: 3,
+          description: 'Visit India',
+          done: false,
+          targetDate: new Date(),
+        },
       ],
     };
   }
@@ -20,6 +35,8 @@ class ListTodosComponent extends Component {
             <tr>
               <th>ID</th>
               <th>DESCRIPTION</th>
+              <th>DONE</th>
+              <th>TARGET DATE</th>
             </tr>
           </thead>
           <tbody>
@@ -27,6 +44,8 @@ class ListTodosComponent extends Component {
               <tr>
                 <td>{todo.id}</td>
                 <td>{todo.description}</td>
+                <td>{todo.done.toString()}</td>
+                <td>{todo.targetDate.toString()}</td>
               </tr>
             ))}
           </tbody>
