@@ -55,20 +55,32 @@ class LoginComponent extends Component {
   }
 
   handleLogin() {
-    if (
-      this.state.username === 'in28minutes' &&
-      this.state.password === 'test'
-    ) {
-    } else {
-    }
-    AuthenticationService.executeBasicAuthenticationService(
+    // AuthenticationService.executeBasicAuthenticationService(
+    //   this.state.username,
+    //   this.state.password
+    // )
+    //   .then(() => {
+    //     AuthenticationService.registerSuccesfulLogin(
+    //       this.state.username,
+    //       this.state.password
+    //     );
+    //     this.props.navigate(`/welcome/${this.state.username}`);
+    //   })
+    //   .catch(() => {
+    //     this.setState({
+    //       hasLoginFailed: true,
+    //       showSuccessMessage: false,
+    //     });
+    //   });
+
+    AuthenticationService.executeJwtAuthenticationService(
       this.state.username,
       this.state.password
     )
-      .then(() => {
-        AuthenticationService.registerSuccesfulLogin(
+      .then((response) => {
+        AuthenticationService.registerSuccesfulLoginForJwt(
           this.state.username,
-          this.state.password
+          response.data.token
         );
         this.props.navigate(`/welcome/${this.state.username}`);
       })
