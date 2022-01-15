@@ -4,6 +4,7 @@ import moment from 'moment';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import TodoDataService from '../../api/todo/TodoDataService';
 import AuthenticationService from './AuthenticationService';
+import { useNavigate } from 'react-router-dom';
 
 export class TodoComponent extends Component {
   constructor(props) {
@@ -28,7 +29,15 @@ export class TodoComponent extends Component {
   }
 
   onSubmit(values) {
-    //console.log(values);
+    console.log(values);
+    let username = AuthenticationService.getLoggedInUserName();
+    TodoDataService.updateTodo(username, this.state.id, {
+      id: this.state.id,
+      description: values.description,
+      targetDate: values.targetDate,
+    }).then(() => {
+      this.props.navigate('/todos');
+    });
   }
 
   validate(values) {
@@ -96,11 +105,13 @@ export class TodoComponent extends Component {
   }
 }
 
-function TodoFunction() {
+function TodoFunction(props) {
   const { id } = useParams();
+  const navigate = useNavigate();
+
   return (
     <>
-      <TodoComponent id={id} />
+      <TodoComponent {...props} navigate={navigate} id={id} />
     </>
   );
 }

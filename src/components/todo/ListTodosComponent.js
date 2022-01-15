@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TodoDataService from '../../api/todo/TodoDataService';
 import AuthenticationService from '../../components/todo/AuthenticationService';
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 
 class ListTodosComponent extends Component {
   constructor(props) {
@@ -87,7 +88,7 @@ class ListTodosComponent extends Component {
                 <tr key={todo.id}>
                   <td>{todo.description}</td>
                   <td>{todo.done.toString()}</td>
-                  <td>{todo.targetDate.toString()}</td>
+                  <td>{moment(todo.targetDat).format('YYYY-MM-DD')}</td>
                   <td>
                     <button
                       className='btn btn-success'
