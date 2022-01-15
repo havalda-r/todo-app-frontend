@@ -55,7 +55,10 @@ class LoginComponent extends Component {
   }
 
   handleLogin() {
-    if (this.state.username === 'test' && this.state.password === 'test') {
+    if (
+      this.state.username === 'in28minutes' &&
+      this.state.password === 'test'
+    ) {
       AuthenticationService.registerSuccesfulLogin(
         this.state.username,
         this.state.password
