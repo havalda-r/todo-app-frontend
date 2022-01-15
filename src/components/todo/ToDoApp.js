@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import WelcomeFunction from './WelcomeComponent';
 import LoginComponentWithNavigate from './LoginComponent';
-import ListTodosComponent from './ListTodosComponent';
+import ListTodosComponentWithNavigate from './ListTodosComponent';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
 import LogoutComponent from './LogoutComponent';
 import AuthenticatedRoute from './AuthenticatedRoute';
 import ErrorComponent from './ErrorComponent';
+import TodoComponent from './TodoComponent';
+import TodoFunction from './TodoComponent';
 
 export default class ToDoApp extends Component {
   render() {
@@ -30,7 +32,15 @@ export default class ToDoApp extends Component {
               path='/todos'
               element={
                 <AuthenticatedRoute>
-                  <ListTodosComponent />
+                  <ListTodosComponentWithNavigate />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path='/todos/:id'
+              element={
+                <AuthenticatedRoute>
+                  <TodoFunction />
                 </AuthenticatedRoute>
               }
             />
@@ -42,6 +52,7 @@ export default class ToDoApp extends Component {
                 </AuthenticatedRoute>
               }
             />
+
             <Route path='*' element={<ErrorComponent />} />
           </Routes>
         </Router>

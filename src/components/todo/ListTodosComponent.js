@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoDataService from '../../api/todo/TodoDataService';
 import AuthenticationService from '../../components/todo/AuthenticationService';
+import { useNavigate } from 'react-router-dom';
 
 class ListTodosComponent extends Component {
   constructor(props) {
@@ -29,6 +30,8 @@ class ListTodosComponent extends Component {
       message: null,
     };
     this.deleteTodoClicked = this.deleteTodoClicked.bind(this);
+    this.updateTodoClicked = this.updateTodoClicked.bind(this);
+
     this.refreshTodos = this.refreshTodos.bind(this);
   }
 
@@ -51,6 +54,16 @@ class ListTodosComponent extends Component {
     });
   }
 
+  updateTodoClicked(id) {
+    console.log(id);
+    this.props.navigate(`/todos/${id}`);
+    // let username = AuthenticationService.getLoggedInUserName();
+    // TodoDataService.deleteTodo(username, id).then((response) => {
+    //   this.setState({ message: `Delete of todo #${id} succesful!` });
+    //   this.refreshTodos();
+    // });
+  }
+
   render() {
     return (
       <div>
@@ -65,6 +78,7 @@ class ListTodosComponent extends Component {
                 <th>DESCRIPTION</th>
                 <th>DONE</th>
                 <th>TARGET DATE</th>
+                <th>UPDATE</th>
                 <th>DELETE</th>
               </tr>
             </thead>
@@ -74,6 +88,14 @@ class ListTodosComponent extends Component {
                   <td>{todo.description}</td>
                   <td>{todo.done.toString()}</td>
                   <td>{todo.targetDate.toString()}</td>
+                  <td>
+                    <button
+                      className='btn btn-success'
+                      onClick={() => this.updateTodoClicked(todo.id)}
+                    >
+                      Update
+                    </button>
+                  </td>
                   <td>
                     <button
                       className='btn btn-warning'
@@ -92,4 +114,9 @@ class ListTodosComponent extends Component {
   }
 }
 
-export default ListTodosComponent;
+function ListTodosComponentWithNavigate(props) {
+  const navigate = useNavigate();
+  return <ListTodosComponent {...props} navigate={navigate} />;
+}
+
+export default ListTodosComponentWithNavigate;
