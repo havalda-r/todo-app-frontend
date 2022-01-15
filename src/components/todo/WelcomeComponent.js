@@ -8,6 +8,7 @@ class WelcomeComponent extends Component {
     super(props);
     this.retrieveWelcomeMessage = this.retrieveWelcomeMessage.bind(this);
     this.handleSuccesfulResponse = this.handleSuccesfulResponse.bind(this);
+    this.handleError = this.handleError.bind(this);
     this.state = {
       welcomeMessage: '',
     };
@@ -42,14 +43,17 @@ class WelcomeComponent extends Component {
     //   this.handleSuccesfulResponse(response)
     // );
 
-    HelloWorldService.executeHelloWorldPathVariableService(
-      this.props.loginName
-    ).then((response) => this.handleSuccesfulResponse(response));
+    HelloWorldService.executeHelloWorldPathVariableService(this.props.loginName)
+      .then((response) => this.handleSuccesfulResponse(response))
+      .catch((error) => this.handleError(error));
   }
 
   handleSuccesfulResponse(response) {
-    console.log(response);
     this.setState({ welcomeMessage: response.data.message });
+  }
+
+  handleError(error) {
+    this.setState({ welcomeMessage: error.response.data.message });
   }
 }
 
