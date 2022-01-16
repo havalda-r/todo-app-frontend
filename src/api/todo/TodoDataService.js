@@ -11,15 +11,15 @@ class TodoDataService {
   }
 
   deleteTodo(username, id) {
-    return axios.delete(`${API_URL}/users/${username}/todos/${id}`);
+    return axios.delete(`${JPA_API_URL}/users/${username}/todos/${id}`);
   }
 
   updateTodo(username, id, todo) {
-    return axios.put(`${API_URL}/users/${username}/todos/${id}`, todo);
+    return axios.put(`${JPA_API_URL}/users/${username}/todos/${id}`, todo);
   }
 
   createTodo(username, todo) {
-    return axios.post(`${API_URL}/users/${username}/todos`, todo);
+    return axios.post(`${JPA_API_URL}/users/${username}/todos`, todo);
   }
 }
 export default new TodoDataService();
